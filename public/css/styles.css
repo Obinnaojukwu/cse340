@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Lexend+Exa:wght@100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Poppins:wght@100..900&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
   --primary-bg: #014f79;
@@ -10,7 +10,6 @@
   --button-hover: #014f79;
 }
 
-/******* Change Box Model ***************/
 *,
 *:before,
 *:after {
@@ -30,29 +29,25 @@ header {
 
 #logoName {
   font-size: 32px;
-  font-family: "Exo 2", sans-serif;
+  font-family: "Roboto", sans-serif;
   text-decoration: none;
   color: var(--text-main);
 }
 
 #accountLink {
   font-size: 14px;
-  font-family: "Lexend Exa", sans-serif;
+  font-family: "Poppins", sans-serif;
   text-decoration: none;
   color: var(--text-main);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Tinos", serif;
+  font-family: "Merriweather", serif;
 }
 
 p, a, button, li {
-  font-family: "Lexend Exa", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-
- /*******************************************
-     Navigation
-    ********************************************/
 
 nav {
   background-color: var(--primary-bg);
@@ -80,17 +75,12 @@ nav a {
     width: 4.5em;
     padding: .25rem 0;
     font-size: 1rem;
-  }
+}
 
-  nav a:hover {
+nav a:hover {
     color: var(--primary-text);
     background-color: var(--primary-background);
-  }
-
- /*******************************************
-     End Navigation
-    ********************************************/
-
+}
 
 main {
   padding: 0 10px 0 10px;
@@ -240,9 +230,6 @@ footer {
     font-size: 20px;
   }
 
-
-  
- 
   h1 {
     font-size: 28px;
   }
