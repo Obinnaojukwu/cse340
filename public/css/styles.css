@@ -1,250 +1,286 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Lexend+Exa:wght@100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --primary-bg: #014f79;
+  --primary-accent: #014f79;
+  --text-main: #242424;
+  --text-light: #fff;
+  --marker-color: #242424;
+  --info-bg: rgba(255,255,255,0.8);
+  --button-hover: #014f79;
+}
+
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
   box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: "Segoe UI", sans-serif;
-  background-image: url('/images/site/small_check.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  color: #111;
-  line-height: 1.5;
-  padding: 1rem;
-}
-
-.wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
-  background-color: white;
-  border: 5px solid #00bcd4;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: #fff;
-  color: #000000;
+  padding: 10px;
 }
 
-header h1 {
-  font-size: 1.5rem;
-}
-
-.account-link {
-  color: rgb(8, 8, 8);
+#logoName {
+  font-size: 32px;
+  font-family: "Exo 2", sans-serif;
   text-decoration: none;
-  font-weight: bold;
+  color: var(--text-main);
+}
+
+#accountLink {
+  font-size: 14px;
+  font-family: "Lexend Exa", sans-serif;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Tinos", serif;
+}
+
+p, a, button, li {
+  font-family: "Lexend Exa", sans-serif;
+}
+
+ /*******************************************
+     Navigation
+    ********************************************/
+
+nav {
+  background-color: var(--primary-bg);
+  color: var(--text-light);
+  font-size: 18px;
+  padding: 10px 0px 10px 0px;
 }
 
 nav ul {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 1rem;
+  justify-content: space-evenly;
   list-style: none;
-  background: #222;
-  padding: 0.1rem;
+  padding: 0;
   margin: 0;
+  margin-top: .75rem;
 }
 
-nav ul li a {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  color: white;
-  text-decoration: none;
-  transition: background 0.3s;
+nav li {
+  padding: 0.25rem 0.5rem;
 }
 
-nav ul li a:hover {
-  background: #00bcd4;
-}
+nav a {
+    color: var(--primary-text);
+    display: inline-block;
+    width: 4.5em;
+    padding: .25rem 0;
+    font-size: 1rem;
+  }
+
+  nav a:hover {
+    color: var(--primary-text);
+    background-color: var(--primary-background);
+  }
+
+ /*******************************************
+     End Navigation
+    ********************************************/
+
 
 main {
-  padding: 1rem;
+  padding: 0 10px 0 10px;
 }
 
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 2rem;
+h1{
+  font-size: 22px;
+  color: var(--text-main);
 }
 
-.hero-text {
-  text-align: center;
-  margin-bottom: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  padding: 1rem;
-  width: fit-content;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
+.delorean-container {
   position: relative;
-  right: -30px;
-  color: #00bcd4; /* Add this line */
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
 }
 
-
-.cta-button {
-  display: inline-block;
-  background: #00bcd4;
-  color: rgb(51, 50, 50);
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 0.5rem;
-  border-radius: 5px;
-}
-
-.hero img {
-  max-width: 100%;
-  height: auto;
-  position: relative;
-  left: -100px;
-}
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.upgrades ul,
-.reviews ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.upgrades ul {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.upgrades li {
-  text-align: center;
-}
-
-.reviews {
-  margin-top: 3rem;
-}
-
-.reviews ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-
-.upgrade-item {
-  background-color: #00bcd4;
-  border: 1px solid #000;
-  padding: 0.5rem;
-  border-radius: 4px;
-  text-align: center;
-  max-width: 290px;
-  margin: 0 auto 0.5rem;
-}
-
-.upgrade-item img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+.delorean-container picture img,
+.delorean-container picture source {
   display: block;
-  margin: 0 auto 0.5rem;
+  width: 100vw;
+  max-width: 85%;
+  height: auto;
+  margin: 40px;
+}
+
+.delorean-info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--info-bg);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.15);
+}
+
+.delorean-container h2{
+  margin: 0;
+  font-size: 18px;
+  color: var(--primary-accent);
+}
+
+.delorean-container p{
+  margin: 5px 0 5px 0;
+  font-size: 16px;
+  color: var(--primary-accent);
+}
+
+.delorean-container button {
+  background-color: var(--primary-accent);
+  color: var(--text-light);
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delorean-container button:hover {
+  background-color: var(--button-hover);
+}
+
+.multiple-grid>div {
+  margin-bottom: 40px;
+}
+
+.reviews-container ul {
+  list-style: disc;
+  padding-left: 1em;
+  margin-left: 0;
+}
+
+.reviews-container ul li {
+  font-size: 16px;
+  color: var(--text-main);
+  margin-bottom: 0.75em;
+}
+
+.reviews-container ul li::marker {
+  color: var(--marker-color);
+}
+
+#upgradesGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+#upgradesGrid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upgrade-img-box {
+  width: 100%;
+  background: var(--primary-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  height: 90px;
+}
+
+#upgradesGrid img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+  background: var(--primary-accent);
+  padding: 5px;
+}
+
+#upgradesGrid a {
+  margin-bottom: 12px;
+  color: var(--primary-accent);
+  font-size: 16px;
 }
 
 footer {
-  background: #fcfcfc;
-  text-align: left;
-  padding: 1rem 1rem 1rem 2rem;
-  color: rgb(0, 0, 0);
-  margin-top: 2rem;
+  padding-left: 10px;
 }
 
-footer p {
-  font-weight: bold;
-}
-
-
-@media screen and (max-width: 767px) {
+@media (min-width: 800px) {
   body {
-    background-image: none;
-    background-color: transparent;
-    padding: 0;
+    background: url('../images/site/checkerboard.jpg') repeat;
   }
 
-  .wrapper {
-    margin: 0;
-    min-height: 100vh;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
+  #wrapper {
+    width: 900px;
+    max-width: 90%;
+    margin: 30px auto;
+    background: white;
+    outline: 4px solid var(--primary-accent);
+    border-radius: 12px;
+    padding: 20px;
   }
 
-  header h1 {
-    font-size: 2rem;
+  #logoName {
+    font-size: 48px;
   }
 
-  .hero img {
-    left: -20px;
+  #accountLink {
+    font-size: 20px;
   }
 
-  nav ul {
-    gap: 0.5rem;
-    justify-content: center;
+
+  
+ 
+  h1 {
+    font-size: 28px;
   }
 
-  nav ul li a {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.9rem;
+  .delorean-info {
+    padding: 20px;
   }
 
-  .reviews {
-    order: -1;
-    margin-top: 0;
+  .delorean-container h2{
+    font-size: 32px;
   }
 
-  .upgrades {
-    order: 0;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .hero {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .delorean-container p{
+    margin: 10px 0 15px 0;
+    font-size: 24px;
   }
 
-  .hero-text {
-    flex: 1;
-    text-align: left;
+  .delorean-container button {
+    font-size: 24px;
   }
 
-  .hero img {
-    flex: 1;
-    max-width: 50%;
+  .multiple-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .cards {
-    flex-direction: row;
-    justify-content: space-between;
+  .reviews-container {
+    grid-column: 2/3;
+    grid-row: 1/2;
   }
 
-  .upgrades,
-  .reviews {
-    width: 48%;
+  .reviews-container ul li {
+    font-size: 20px;
   }
 
-  .upgrades ul {
-    grid-template-columns: repeat(2, 1fr);
+  .upgrade-container {
+    grid-column: 1/2;
+    grid-row: 1/2;
   }
 }
