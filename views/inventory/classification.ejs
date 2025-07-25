@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title || 'Classification' %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <main>
+      <% if (title) { %>
+        <h1><%= title %></h1>
+      <% } else { %>
+        <% res.redirect('/') %>
+      <% } %>
+
+      <%# messages() %>
+      <%- grid %>
+    </main>
+  </div>
+
+</body>
+</html>
