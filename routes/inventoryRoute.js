@@ -138,5 +138,8 @@ utilities.checkAccountType,
 utilities.handleErrors(invController.deleteItem)
 )
 
+// New route for review submission
+router.post("/add-review", utilities.handleErrors(invController.addReview));
+
 
 module.exports = router;

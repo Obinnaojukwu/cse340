@@ -39,11 +39,13 @@ invCont.buildDetail = async function (req, res, next) {
   let nav = await utilities.getNav()
   const vehicleTitle =
     vehicle.inv_year + " " + vehicle.inv_make + " " + vehicle.inv_model
+  const reviews = await invModel.getReviewsByInvId(invId); // New: Fetch reviews
   res.render("./inventory/detail", {
     title: vehicleTitle,
     nav,
     message: null,
     htmlData,
+    reviews, // New: Pass reviews to the view
   })
 }
 
@@ -70,7 +72,6 @@ invCont.buildManagementView = async function (req, res, next) {
   })
 }
 
-
 /* ***************************
  * Build new classification view
  * Assignment 4, Task 2
@@ -83,7 +84,6 @@ invCont.newClassificationView = async function (req, res, next) {
     errors: null,
   })
 }
-
 
 /* ***************************
  * Process new classification insert
@@ -111,7 +111,6 @@ invCont.addClassification = async function (req, res, next) {
     })
   }
 }
-
 
 /* ***************************
  * Build new inventory view
@@ -327,8 +326,65 @@ invCont.deleteItem = async function (req, res, next) {
   }
 }
 
+/* ****************************************
+ *  Build vehicle detail view with reviews and review form
+ *  Enhancement: User Reviews
+ * *************************************** */
+invCont.buildDetail = async function (req, res, next) {
+  const invId = req.params.id;
+  let vehicle = await invModel.getInventoryById(invId);
+  const htmlData = await utilities.buildSingleVehicleDisplay(vehicle);
+  let nav = await utilities.getNav();
+  const vehicleTitle = vehicle.inv_year + " " + vehicle.inv_make + " " + vehicle.inv_model;
+  const reviews = await invModel.getReviewsByInvId(invId); // Fetch reviews
+  res.render("./inventory/detail", {
+    title: vehicleTitle,
+    nav,
+    message: null,
+    htmlData,
+    reviews, // Pass reviews to the view
+  });
+};
 
+/* ****************************************
+ *  Process new review submission
+ *  Enhancement: User Reviews
+ * *************************************** */
+invCont.addReview = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const { inv_id, review_text, rating } = req.body;
 
+  let errors = [];
+  if (!inv_id) errors.push({ message: "Inventory ID is required." });
+  if (!review_text) errors.push({ message: "Review text is required." });
+  if (!rating || isNaN(rating) || rating < 1 || rating > 5) {
+    errors.push({ message: "Rating must be between 1 and 5." });
+  }
 
+  if (errors.length > 0) {
+    let vehicle = await invModel.getInventoryById(inv_id);
+    const htmlData = await utilities.buildSingleVehicleDisplay(vehicle);
+    let reviews = await invModel.getReviewsByInvId(inv_id);
+    res.render("./inventory/detail", {
+      title: vehicle.inv_year + " " + vehicle.inv_make + " " + vehicle.inv_model,
+      nav,
+      message: "Review submission failed.",
+      htmlData,
+      reviews,
+      errors,
+    });
+    return;
+  }
 
-module.exports = invCont
+  try {
+    await invModel.addReview(inv_id, review_text, parseInt(rating));
+    req.flash("message success", "Review added successfully!");
+    res.redirect(`/inv/detail/${inv_id}`);
+  } catch (error) {
+    console.error("addReview controller error: " + error);
+    req.flash("message warning", "Error adding review.");
+    res.redirect(`/inv/detail/${inv_id}`);
+  }
+};
+
+module.exports = invCont;

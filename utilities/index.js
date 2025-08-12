@@ -82,29 +82,23 @@ Util.buildClassificationList = async function (classification_id = null) {
 * Build the inventory view HTML
 * ************************************ */
 Util.buildSingleVehicleDisplay = async function (data) {
-    let grid = '<section id="vehicle-display">'
-    grid += `<div>`
-    grid += '<section class="imagePrice">'
-    grid += `<img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">`
-    grid += '</section>'
-    grid += '<section class="vehicleDetail">'
-    grid += "<h3> " + data.inv_make + " " + data.inv_model + " Details</h3>"
-    grid += '<ul id="vehicle-details">'
-    grid +=
-        "<li><h4>Price: $" +
-        new Intl.NumberFormat("en-US").format(data.inv_price) +
-        "</h4></li>"
-    grid += "<li><h4>Description:</h4> " + data.inv_description + "</li>"
-    grid += "<li><h4>Color:</h4> " + data.inv_color + "</li>"
-    grid +=
-        "<li><h4>Miles:</h4> " +
-        new Intl.NumberFormat("en-US").format(data.inv_miles) +
-        "</li>"
-    grid += "</ul>"
-    grid += "</section>"
-    grid += `</div>`
-    return grid
-}
+    let grid = '<section id="vehicle-display" data-inv-id="' + data.inv_id + '">';
+    grid += `<div>`;
+    grid += '<section class="imagePrice">';
+    grid += `<img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">`;
+    grid += '</section>';
+    grid += '<section class="vehicleDetail">';
+    grid += "<h3> " + data.inv_make + " " + data.inv_model + " Details</h3>";
+    grid += '<ul id="vehicle-details">';
+    grid += "<li><h4>Price: $" + new Intl.NumberFormat("en-US").format(data.inv_price) + "</h4></li>";
+    grid += "<li><h4>Description:</h4> " + data.inv_description + "</li>";
+    grid += "<li><h4>Color:</h4> " + data.inv_color + "</li>";
+    grid += "<li><h4>Miles:</h4> " + new Intl.NumberFormat("en-US").format(data.inv_miles) + "</li>";
+    grid += "</ul>";
+    grid += "</section>";
+    grid += `</div>`;
+    return grid;
+};
 
 /* ****************************************
  * Middleware For Handling Errors

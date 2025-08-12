@@ -148,5 +148,35 @@ async function deleteInventoryItem(inv_id) {
   }
 }
 
+/* ***************************
+ *  Get reviews by inventory ID
+ *  Enhancement: User Reviews
+ * ************************** */
+async function getReviewsByInvId(invId) {
+  try {
+    const result = await pool.query("SELECT * FROM public.reviews WHERE inv_id = $1 ORDER BY review_date DESC", [invId]);
+    return result.rows;
+  } catch (error) {
+    console.error("getReviewsByInvId error: " + error);
+    throw error;
+  }
+}
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById, addClassification, addInventory,updateInventory,deleteInventoryItem }
+/* ***************************
+ *  Add a new review
+ *  Enhancement: User Reviews
+ * ************************** */
+async function addReview(invId, reviewText, rating) {
+  try {
+    const result = await pool.query(
+      "INSERT INTO public.reviews (inv_id, review_text, rating) VALUES ($1, $2, $3) RETURNING *",
+      [invId, reviewText, rating]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error("addReview error: " + error);
+    throw error;
+  }
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById, addClassification, addInventory, updateInventory, deleteInventoryItem, getReviewsByInvId, addReview };

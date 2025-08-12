@@ -5,12 +5,42 @@
   res.redirect('/')
 } %>
 
-
-
 <% if(Object.entries(htmlData).length > 0){ %>
-
 <%- htmlData %>
 <% } else { %>
 <p class="notice">Sorry, no matching vehicle could be found.</p>
 <% } %>
 
+
+<%- include('review') %>
+
+
+<% if (Object.entries(htmlData).length > 0) { %>
+  <% const invIdMatch = htmlData.match(/data-inv-id="(\d+)"/); %>
+  <% if (invIdMatch && invIdMatch[1]) { %>
+    <button id="showReviewForm" class="review-button">Leave a Review</button>
+    <form action="/inv/add-review" method="post" class="auth-form" id="reviewForm" style="display: none;">
+      <input type="hidden" name="inv_id" value="<%= invIdMatch[1] %>">
+      <div>
+        <label for="review_text">Your Review:</label>
+        <textarea id="review_text" name="review_text" required></textarea>
+      </div>
+      <div>
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+      </div>
+      <button type="submit">Submit Review</button>
+    </form>
+  <% } %>
+<% } %>
+
+
+<script>
+  document.getElementById('showReviewForm').addEventListener('click', function() {
+    const form = document.getElementById('reviewForm');
+    if (form.style.display === 'none') {
+      form.style.display = 'block';
+      this.style.display = 'none'; 
+    }
+  });
+</script>

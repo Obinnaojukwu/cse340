@@ -1,0 +1,14 @@
+<% if (reviews && reviews.length > 0) { %>
+  <h2>Customer Reviews</h2>
+  <ul class="reviews">
+    <% reviews.forEach(review => { %>
+      <li>
+        <p><strong>Rating:</strong> <%= review.rating %>/5</p>
+        <p><strong>Review:</strong> <%= review.review_text %></p>
+        <p><small>Posted on: <%= review.review_date.toLocaleString() %></small></p>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No reviews yet. Be the first to review this vehicle!</p>
+<% } %>
